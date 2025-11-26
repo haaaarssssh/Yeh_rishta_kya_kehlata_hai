@@ -9,4 +9,4 @@ def home():
 
 if __name__ == '__main__':
     # Debug mode is on so you can see errors if you miss a file
-    app.run(debug=True, port=5000)
+    app.run()
