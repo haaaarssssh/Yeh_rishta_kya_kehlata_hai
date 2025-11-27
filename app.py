@@ -4,9 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # We render the cringe html file
     return render_template('index.html')
 
+# Vercel requires this, but doesn't use the 'run' command
 if __name__ == '__main__':
-    # Debug mode is on so you can see errors if you miss a file
     app.run()
