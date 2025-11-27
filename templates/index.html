@@ -14,6 +14,7 @@
     text-align: center;
     margin: 0;
     overflow-x: hidden;
+    padding-bottom: 100px; /* Space for news ticker */
   }
 
   /* RAINBOW TEXT */
@@ -28,7 +29,7 @@
 
   /* BLINKING TEXT */
   .blink {
-    animation: blinker 0.5s linear infinite;
+    animation: blinker 0.3s linear infinite; /* Faster blinking for more drama */
     color: #00FF00;
   }
   @keyframes blinker {
@@ -46,13 +47,30 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border: 5px solid red;
+    border: 10px double red;
+  }
+
+  /* NIMBU MIRCHI (NAZAR SURAKSHA) */
+  #nimbu-mirchi {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 50px;
+      z-index: 5000;
+      animation: swing 2s infinite ease-in-out;
+      cursor: not-allowed;
+  }
+  @keyframes swing {
+      0% { transform: rotate(10deg); }
+      50% { transform: rotate(-10deg); }
+      100% { transform: rotate(10deg); }
   }
   
   /* MOVIE POSTER */
   .movie-poster-container {
     position: relative;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
     height: 700px;
     margin: 20px auto;
     border: 15px ridge gold;
@@ -85,14 +103,6 @@
     background-position: center top;
   }
 
-  /* SCROLLING GALLERY */
-  .love-train img {
-    height: 250px;
-    border: 5px solid cyan;
-    margin: 10px;
-    border-radius: 15px;
-  }
-  
   /* VIDEO CONTAINER */
   .video-container {
       display: flex;
@@ -107,12 +117,9 @@
       border-radius: 10px;
       width: 300px;
   }
-  video {
-      width: 100%;
-      border: 2px solid white;
-  }
+  video { width: 100%; border: 2px solid white; }
 
-  /* PASANDIDA MARD SECTION STYLE */
+  /* PASANDIDA MARD SECTION */
   .quote-box {
       background: radial-gradient(circle, #ff0066, #330000);
       border: 8px dashed yellow; 
@@ -124,33 +131,70 @@
       box-shadow: 0 0 20px orange;
   }
   .shayari {
-      font-size: 24px; 
+      font-size: 20px; font-weight: bold; font-family: 'Courier New', monospace;
+      padding: 10px; border-bottom: 2px dotted white;
+  }
+
+  /* SCROLLING GALLERY */
+  .love-train img {
+    height: 250px;
+    border: 5px solid cyan;
+    margin: 10px;
+    border-radius: 15px;
+  }
+
+  /* BREAKING NEWS FOOTER */
+  .breaking-news {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: red;
+      color: white;
       font-weight: bold;
-      font-family: 'Courier New', monospace;
-      padding: 10px;
-      border-bottom: 2px dotted white;
+      font-size: 24px;
+      padding: 10px 0;
+      border-top: 5px solid yellow;
+      z-index: 9000;
+  }
+
+  /* DRAMA ANIMATIONS (DHOOM TANA) */
+  .shock-mode {
+      animation: dhoomTana 1s infinite;
+      filter: contrast(200%) grayscale(100%);
+  }
+  @keyframes dhoomTana {
+      0% { transform: scale(1) rotate(0deg); background: white; }
+      25% { transform: scale(1.1) rotate(5deg); background: black; }
+      50% { transform: scale(1) rotate(-5deg); background: white; }
+      75% { transform: scale(1.1) rotate(5deg); background: black; }
+      100% { transform: scale(1) rotate(0deg); }
   }
 
 </style>
 </head>
-<body>
+<body id="main-body">
+
+<!-- NIMBU MIRCHI -->
+<div id="nimbu-mirchi" title="Buri Nazar Wale Tera Muh Kala">🍋🌶️</div>
 
 <!-- CLICK TO ENTER -->
 <div id="enter-screen" onclick="startCringe()">
-  <h1 class="rainbow" style="font-size: 50px;">WARNING: EXTREME LOVE AHEAD</h1>
-  <p class="blink" style="font-size: 30px;">CLICK HERE 2 ENTER</p>
-  <p>(Turn Audio ON)</p>
+  <h1 class="rainbow" style="font-size: 50px;">⚠ WARNING ⚠</h1>
+  <h2 style="color: white;">EXTREME DRAMA & ROMANCE AHEAD</h2>
+  <p class="blink" style="font-size: 30px;">[ CLICK TO ENTER ]</p>
+  <p>(Please Turn Volume FULL UP)</p>
 </div>
 
 <!-- MUSIC -->
 <audio id="bgm" loop>
-  <source src="static\music\Aaye Ho Meri Zindagi Mein  Udit Narayan  Aamir  Karisma  Evergreen Love Song.mp3">
+  <source src="{{ url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
 </audio>
 
-<!-- MARQUEE HEADER -->
+<!-- HEADER -->
 <div style="background:blue; border-top:5px solid red; border-bottom:5px solid red;">
 <marquee scrollamount="20" style="font-size: 30px; color: white; font-weight:bold;">
-  ❤❤❤ WELCOME TO THE WEDDING WEBSITE OF THE CENTURY !!! NO NAZAR PLS !!! 100% PURE DESI ROMANCE ❤❤❤
+  ❤❤❤ OFFICIALLY THE CUTEST COUPLE IN THE UNIVERSE !!! HATERS GONNA HATE !!! POTATO GONNA POTATE !!! ❤❤❤
 </marquee>
 </div>
 
@@ -159,53 +203,54 @@
 <h1 class="rainbow" style="font-size:50px;">~*~ HaPpY AnNiVeRsArY ~*~</h1>
 <img src="https://media.giphy.com/media/Lndj3V6hC7yCc/giphy.gif" width="100">
 
+<!-- DRAMA BUTTON -->
+<br><br>
+<button onclick="triggerDrama()" style="background:red; color:white; font-size:20px; font-weight:bold; border:5px outset white; padding:15px; cursor:pointer;">
+  🚫 DON'T CLICK THIS BUTTON 🚫
+</button>
+<br><br>
+
 <div class="blink" style="font-size: 25px;">Scroll Down 4 Jaadoo...</div>
 
 <hr style="height:5px; background:purple; border:none;">
 
-<!-- 1. MOVIE POSTER -->
+<!-- 1. POSTER -->
 <h2>My FaVoRiTe MoViE = UR LoVe StoRy</h2>
 <div class="movie-poster-container">
   <div id="hero-face" class="head-crop"></div>
   <div id="heroine-face" class="head-crop"></div>
 </div>
-
 <p style="font-size: 20px; color: cyan;"><i>"Pyaar dosti hai... aur bakchodi pyaar hai..."</i></p>
 
 <hr style="height:5px; background:purple; border:none;">
 
-<!-- 2. PASANDIDA MARD QUOTES (NEW SECTION) -->
+<!-- 2. PASANDIDA MARD -->
 <h2 class="rainbow">✨ MERI JAAN = MERA PASANDIDA MARD ✨</h2>
-
 <div class="quote-box">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" width="60">
     <br>
-    
     <p class="shayari" style="color: cyan;">
         "Mard sirf apni pasandida aurat ke samne <br>
         bacchha banta hai..." 👶🍼
     </p>
-    
     <p class="shayari" style="color: lime;">
         "Suno... Duniya mein hazaron mard hain,<br>
         Par mujhe sirf tumhara Sar Dard banna hai..." 🤯❤️
     </p>
-
     <p class="shayari" style="color: yellow; border:none;">
         "Wo gussa karta hai... <br>
         Par baad mein Sorry bhi wahi bolta hai..." 😡👉👈
     </p>
-    
     <br>
     <marquee bgcolor="white" style="color:red; font-size:18px;">
-        TAG UR PASANDIDA MARD IN COMMENTS 👇👇👇 #Love #CoupleGoals #NazarNaLage
+        TAG UR PASANDIDA MARD 👇👇👇 #Love #ToxicButCute
     </marquee>
 </div>
 
 <hr style="height:5px; background:purple; border:none;">
 
-<!-- 3. THE LEAKED VIDEOS -->
-<h2 class="rainbow">~*~ 3 LEAKED VIDEOS FOUND !!! ~*~</h2>
+<!-- 3. VIDEOS -->
+<h2 class="rainbow">~*~ 📹 LEAKED CCTV FOOTAGE 📹 ~*~</h2>
 <div class="video-container">
     <div class="video-frame">
         <p style="color:white; font-weight:bold;">Romantic Scene 1</p>
@@ -223,7 +268,7 @@
 
 <hr style="height:5px; background:purple; border:none;">
 
-<!-- 4. THE LOVE TRAIN -->
+<!-- 4. GALLERY -->
 <h2 style="color: hotpink;">~*~ THE LOVE TRAIN (NEVER ENDING) ~*~</h2>
 <div style="background-color: #220022; padding: 10px;">
     <marquee scrollamount="15" direction="left" class="love-train" behavior="alternate">
@@ -237,41 +282,67 @@
 
 <br><br>
 
-<!-- POST CREDIT SCENE -->
+<!-- DEVARS ENTRY -->
 <div style="background-color: #220022; border: 10px double lime; padding: 20px; margin-bottom: 50px;">
   <h1 class="blink" style="color: yellow; font-size: 40px;">!!! WARNING: DEVARS ENTRY !!!</h1>
   <img src="https://media.giphy.com/media/l1KsEMkOLa6ayjUdO/giphy.gif" style="border: 5px solid cyan; border-radius: 20px; width: 300px;">
   <h2 class="rainbow" style="font-size: 35px; margin-top: 20px;">BHABHI TERE DEVAR DEEWANE...</h2>
   <div style="background: red; padding: 10px; transform: rotate(-2deg);">
     <marquee scrollamount="20" direction="right" style="font-size: 40px; color: white; font-weight: bold;">
-      🔥🔥 ASHU 🔥🔥 . . . . . . 😎 JALGAON WALE HARSH 😎..And OnE and wonly SU su SuRiyanna
+      🔥🔥 ASHU 🔥🔥 . . . . . . 😎 JALGAON WALE HARSH 😎
     </marquee>
   </div>
   <p style="color: lime; font-size: 18px;">(Party kab hai ???)</p>
 </div>
 
-<!-- JAVASCRIPT -->
+<!-- BREAKING NEWS FOOTER -->
+<div class="breaking-news">
+    <marquee scrollamount="18">
+        🚨 BREAKING NEWS: DO DIL MIL GAYE !! 🚨 SUTRON SE KHABAR AAYI HAI KI YE COUPLE SABSE BEST HAI !! 🚨 POLICE NE KAHA: "TOO MUCH ROMANCE IS ILLEGAL" !! 🚨 NAZAR NA LAGE !!!
+    </marquee>
+</div>
+
+<!-- SCRIPTS -->
 <script>
   function startCringe() {
     var music = document.getElementById("bgm");
     music.play();
     document.getElementById("enter-screen").style.display = "none";
+    
+    // Fake Virus
     setTimeout(function() {
         alert("VIRUS DETECTED !!! \nJust kidding, it's the LOVE VIRUS ❤️");
     }, 2000);
+
+    // Rain
     setInterval(createHeart, 200);
+  }
+
+  // The Dhoom Tana Drama Effect
+  function triggerDrama() {
+      var body = document.getElementById("main-body");
+      // Add the shake/flash class
+      body.classList.add("shock-mode");
+      
+      // Play a dramatic alert
+      alert("DHOOM TAANA NA NA NA NA.... ⚡⚡⚡");
+
+      // Remove effect after 3 seconds
+      setTimeout(function(){
+          body.classList.remove("shock-mode");
+      }, 3000);
   }
 
   function createHeart() {
     const heart = document.createElement('div');
-    const icons = ['🌹', '❤️', '💋', '💍', '🙈', '🦋'];
+    const icons = ['🌹', '❤️', '💋', '💍', '🙈', '🦋', '⚡'];
     heart.innerText = icons[Math.floor(Math.random() * icons.length)];
     heart.style.position = 'fixed';
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.top = '-50px';
     heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
     heart.style.animation = 'fall 4s linear';
-    heart.style.zIndex = '-1'; 
+    heart.style.zIndex = '4000'; 
     document.body.appendChild(heart);
     setTimeout(() => { heart.remove() }, 4000);
   }
